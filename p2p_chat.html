@@ -9,50 +9,35 @@
   <link rel='stylesheet' href='css/nav.css'>
   <title>Peer Chat</title>
   <script src='js/peerjs.min.js'></script>
-  <script src='js/cookies.js'></script>
   <script src='js/p2p_chat.js'></script>
   <script src='js/nav.js'></script>
 </head>
 <body>
-<!-- Top Navigation Menu -->
+<!-- Top Nav -->
 <div class='topnav'>
-  <a href='#home' class='active' id='title' onclick='nav_group()'>p2p Chat</a>
-  <div id='groups'></div>
-  <a class='icon' onclick='nav_toggle()'><i class='fa fa-bars'></i></a>
+  <a href='#home' class='active' id='title' onclick='nav.menu_set()'>p2p Chat</a>
+  <div id='menus'></div>
+  <a class='icon' onclick='nav.toggle()'><i class='fa fa-bars'></i></a>
 </div>
-
+<!-- menu Main -->|
 <div class='divnav' id='Home'>
 <video id='local_stream' autoplay muted playsinline'></video>
 <table>
-    <tr><td><button class='fa fa-user' onclick='peer_reload()'> ReInit</button></td>
+    <tr><td><button class='fa fa-user' onclick='p2p.reload()'> ReInit</button></td>
         <td><input id='src_id'  placeholder='your ID'></input></td><td></td><tr>
-    <tr><td><button class='fa fa-video-camera' onclick='video_connect()'> Call</button></td>
+    <tr><td><button class='fa fa-video-camera' onclick='p2p.video_connect()'> Call</button></td>
         <td><input id='dst_id' placeholder='destination ID'></input></td>
         <td><button class='fa fa-clipboard' onclick='invite()'> Invite</button></td><tr>
-    <tr><td><button class='fa fa-envelope-o' onclick='peer_send()'> Send</button></td>
-        <td colspan=2><textarea id='peer_msg' placeholder='type your message here'></textarea ></td><tr>
-    <tr><td>peer status:</td><td><div id='peer_status'></div></td></tr>
+    <tr><td><button class='fa fa-envelope-o' onclick='p2p.send()'> Send</button></td>
+        <td colspan=2><textarea id='p2p-msg' placeholder='type your message here'></textarea ></td><tr>
+    <tr><td>peer status:</td><td><div id='p2p-status'></div></td></tr>
 </table>
 <!-- <audio id='audio_id' controls></audio> -->
 <video id='rmt_stream' autoplay playsinline></video>
-<div id='msg_box'></div>
-</div>
-</div>
-
-<div class='divnav' id='Settings'>
-<table><tr><td><i class='fa fa-camera'> Local camera </i></td>
-           <td><button onclick="gEl('local_stream').style.display = 'none';"> Hide</button></td>
-           <td><button onclick="gEl('local_stream').style.display = 'Block';"> Show</button></td>
-           <td><button onclick="gEl('local_stream').muted = true;" class="fa fa-volume-off"> Mute</button></td>
-           <td><button onclick="gEl('local_stream').muted = false;" class="fa fa-volume-up"> Unmute</button><br></td>
-  </tr><tr><td><i class='fa fa-camera-retro'> Remote camera </i></td>
-           <td><button onclick="gEl('rmt_stream').style.display = 'none';"> Hide</button></td>
-           <td><button onclick="gEl('rmt_stream').style.display = 'Block';"> Show</button></td>
-           <td><button onclick="gEl('rmt_stream').muted = true;"> Mute</button></td>
-           <td><button onclick="gEl('rmt_stream').muted = false;"> Unmute</button></td>
-   </tr></table>
+<div id='msg-box'></div>
 </div>
 
+<!-- menu Help -->
 <div class='divnav' id='Help'>
 <table><tr><td><button class='fa fa-user'> ReInit: </button></td>
            <td>Enter a unique ID (name, adress, email, phone) and press the ReInit button</td>
@@ -60,12 +45,14 @@
            <td>Destination: Enter the ID to call and press the Call button</td>
   </tr><tr><td><button class='fa fa-envelope-o'> Send: </button></td>
            <td>Enter a message and press the Send button</td>
+  </tr><tr><td><button class='fa fa-clipboard'> Imvite: </button></td>
+           <td>Copy invite URL to clipboard</td>
   </tr></table>
 </div>
-
+<!-- menu About -->
 <div class='divnav' id='About'>
 <br>Video chat using peer to peer <a href='https://en.wikipedia.org/wiki/WebRTC'> WebRTC</a><br>
-<br><b>Github: </b><a href='https://github.com/luchermans/luchermans.github.io/tree/main/p2p_chat'> p2p_chat</a>
+<br><b>Github: </b><a href='https://github.com/luchermans/p2p_chat'> p2p_chat</a>
 <ul title='Credits:'>
     <li><a href='https://peerjs.com/'>peerjs.com</a>
     <li><a href='https://fontawesome.com/'>fontawesome.com</a>
@@ -73,7 +60,7 @@
 </div>
 
 <script>
-nav_init(['Home', 'Settings', 'Help', 'About']);
+nav.init(['Home', 'Help', 'About']);
 stream_init();
 </script>
 </body>
