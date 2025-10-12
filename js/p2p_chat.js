@@ -159,16 +159,13 @@ function invite() { //copy invite URL?from=dst_id&to=src_id to clipboard
 
 function do_invite() {  //get ?from=src_id&to=dst_id
     var pars = ('' + location).split('?from=')[1];
-    console.log('par', pars)
     if (!pars)  return 0;
     pars = pars.split('&to=');
-    console.log('par2', pars)
     if (pars[0]) {
         gEl('src_id').value = pars[0];
         p2p.par_set('p2p_src_id', pars[0]);
     }
     if (pars[1]) {
-        console.log('par1', pars[1])
         gEl('dst_id').value = pars[1];
         p2p.init();
         return 1;
